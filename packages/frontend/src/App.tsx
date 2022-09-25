@@ -15,23 +15,33 @@ function App() {
   const [todos, setTodos] = useState<TodoItem[]>([]);
   const [error, setError] = useState<string | undefined>();
 
-  const createTodo = (todoText: string): void => {
+  const createTodo = async (todoText: string): Promise<void> => {
     const todoItem: TodoItem = {
       text: todoText,
       timeStamp: new Date()
     }
-    axios
-      .post<TodoItem[]>('/todos', todoItem) 
-      .then((response) => setTodos(response.data))
+  
+  try {
+    await axios.post<TodoItem[]>('/todos', todoItem) 
+    const response = await axios.get<TodoItem[]>('/todos')
+    setTodos(response.data)
+  } catch (err) {
+    setTodos([])
+    setError('Error creating todo')
+  }
   }
 
   useEffect(() => {
-    fetchTodos()
-      .then(setTodos)
-      .catch((error) => {
-      setTodos([])
-      setError('Something went wrong while searching for my todos...')
-    })
+    const interval = setInterval(() => {
+      fetchTodos()
+        .then(setTodos)
+        .catch((error) => {
+          setTodos([])
+          setError('Something went wrong while searching for my todos...')
+      })
+    }, 2000)
+
+    return () => clearInterval(interval)
   }, [])
 
   const output = () => {
