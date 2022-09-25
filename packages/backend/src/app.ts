@@ -10,7 +10,7 @@ const port : number = parseInt(process.env.SERVER_PORT || '3001')
 app.get('/todos', (req: Request, res: Response<TodoItem>) => {
   res.send({
     id: '1',
-    text: 'Hello World',
+    text: 'Gå till gymet',
     timeStamp: new Date()
   })
 })
