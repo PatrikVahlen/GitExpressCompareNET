@@ -1,5 +1,5 @@
 export default interface TodoItem {
-    id: string,
+    id?: string,
     text: string,
     timeStamp: Date
 }
