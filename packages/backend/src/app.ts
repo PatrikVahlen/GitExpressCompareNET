@@ -48,6 +48,15 @@ app.delete("/todos/:id", (req: Request<{id: string}>, res: Response<TodoItem[]>)
   res.send(TODO_ITEMS)
 });
 
+app.put("/todos/:id", (req: Request<{id: string}>, res: Response<TodoItem[]>) => {
+  const id = req.params.id
+  const todoItem = req.body
+  console.log('Updating todo item with id', id, todoItem)
+  TODO_ITEMS = TODO_ITEMS.map(item => item.id === id ? todoItem : item)
+  writeTodosToFile(TODO_ITEMS)
+  res.send(TODO_ITEMS)
+});
+
 app.listen(port, function () {
     console.log(`App is listening on port ${port}!`)
 })

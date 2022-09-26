@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import TodoItem from '../../shared/src/todo-item';
 import "./App.css";
 import axios from "axios";
-import { GiTrashCan } from "react-icons/gi";
+import { BsTrash } from "react-icons/bs";
+import { AiOutlineEdit } from "react-icons/ai";
 
 axios.defaults.baseURL = process.env.REACT_APP_TODO_API || 'http://localhost:3001'
 
@@ -26,6 +27,7 @@ function App() {
     await axios.post<TodoItem[]>('/todos', todoItem) 
     const response = await axios.get<TodoItem[]>('/todos')
     setTodos(response.data)
+    setTodoText('')
   } catch (err) {
     setTodos([])
     setError('Error creating todo')
@@ -45,6 +47,14 @@ function App() {
     }
   }
 
+  function editTodo (): void {
+    if (document.getElementById("popup")?.style.display === "none") {
+      document.getElementById("popup")!.style.display = "block";
+    } else {
+      document.getElementById("popup")!.style.display = "none";
+    } 
+  }
+   
   useEffect(() => {
     const interval = setInterval(() => {
       fetchTodos()
@@ -67,7 +77,13 @@ function App() {
           return (
             <>
             <div className="Todo">
-            <span key={item.id}>{item.text} <button className="Delete_Button" onClick={() => deleteTodo(item)}> < GiTrashCan/> </button></span>
+            <span key={item.id}>{item.text} 
+            <button className="Delete_Button" onClick={() => deleteTodo(item)}> < BsTrash/> </button> 
+            <button className="Edit_Button" onClick={() => editTodo()}> < AiOutlineEdit/> </button>
+            <input type="text" name="popup" id="popup" className="hide"></input>
+            </span>
+            {/* <input type="text" name="popup" id="popup" className="hide"></input> */}
+
             </div>
             </>
           )
