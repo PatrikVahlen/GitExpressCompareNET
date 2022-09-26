@@ -60,3 +60,16 @@
   border-radius: 5px;
   font-size: 20px;
 }
+
+.Todo {
+  background-color: #61dafb;
+  margin: 0.5rem;
+}
+
+.Delete_Button {
+  display: none;
+}
+
+.Delete_Button:hover {
+  background-color: green;
+}

@@ -64,8 +64,10 @@ function App() {
       return (<div>{
         todos.map((item) => {
           return (<>
+            <div className="Todo">
             <p key={item.id}>{item.text}</p>
             <button className="Delete_Button" onClick={() => deleteTodo(item)}>Delete</button>
+            </div>
             </>
           )
         })
