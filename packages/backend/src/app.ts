@@ -40,6 +40,14 @@ app.post("/todos", (req: Request<TodoItem>, res: Response<TodoItem[]>) => {
   res.send(TODO_ITEMS)
 });
 
+app.delete("/todos/:id", (req: Request<{id: string}>, res: Response<TodoItem[]>) => {
+  const id = req.params.id
+  console.log('Deleting todo item with id', id)
+  TODO_ITEMS = TODO_ITEMS.filter(item => item.id !== id)
+  writeTodosToFile(TODO_ITEMS)
+  res.send(TODO_ITEMS)
+});
+
 app.listen(port, function () {
     console.log(`App is listening on port ${port}!`)
 })

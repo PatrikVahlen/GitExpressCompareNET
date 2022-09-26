@@ -31,6 +31,19 @@ function App() {
   }
   }
 
+  const deleteTodo = async (todo: TodoItem): Promise<void> => {
+    console.log('delete todo', todo)
+    console.log('delete todo', todo.id)
+    try {
+      await axios.delete<TodoItem[]>(`/todos/${todo.id}`)
+      const response = await axios.get<TodoItem[]>('/todos')
+      setTodos(response.data)
+    } catch (err) {
+      setTodos([])
+      setError('Error deleting todo')
+    }
+  }
+
   useEffect(() => {
     const interval = setInterval(() => {
       fetchTodos()
@@ -50,7 +63,11 @@ function App() {
     } else if (todos) {
       return (<div>{
         todos.map((item) => {
-          return (<p key={item.id}>{item.text}</p>)
+          return (<>
+            <p key={item.id}>{item.text}</p>
+            <button className="Delete_Button" onClick={() => deleteTodo(item)}>Delete</button>
+            </>
+          )
         })
         }</div>)
     } else 
