@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+.Bottom_Field {
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+}
+
+.Input_Field {
+  height: 1rem;
+  width: 20rem;
+  margin: 0.5rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.Create_Button {
+  height: 2rem;
+  width: 8rem;
+  margin: 0.5rem;
+  border-radius: 5px;
+  font-size: 20px;
+}

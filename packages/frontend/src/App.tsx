@@ -62,11 +62,11 @@ function App() {
       <header className="App-header">
         {output()}
       </header>
-      <section>
-        <input type="text" value={todoText} onChange={(e) => setTodoText(e.target.value)}/>
-        <button onClick={(e) => createTodo(todoText)}>Create todo</button>
-      </section>
-
+      <div className="Bottom_Field">
+        <input className="Input_Field" type="text" value={todoText} onChange={(e) => setTodoText(e.target.value)}/>
+        <br />
+        <button className="Create_Button" onClick={(e) => createTodo(todoText)}>Create todo</button>
+      </div>
     </div>
   );
 }
