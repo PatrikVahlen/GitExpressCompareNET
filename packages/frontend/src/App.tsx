@@ -47,7 +47,7 @@ function App() {
     }
   }
 
-  function editTodo (): void {
+  function editTodo (todo: TodoItem): void {
     if (document.getElementById("popup")?.style.display === "none") {
       document.getElementById("popup")!.style.display = "block";
     } else {
@@ -79,11 +79,9 @@ function App() {
             <div className="Todo">
             <span key={item.id}>{item.text} 
             <button className="Delete_Button" onClick={() => deleteTodo(item)}> < BsTrash/> </button> 
-            <button className="Edit_Button" onClick={() => editTodo()}> < AiOutlineEdit/> </button>
-            <input type="text" name="popup" id="popup" className="hide"></input>
+            <button className="Edit_Button" onClick={() => editTodo(item)}> < AiOutlineEdit/> </button>
+            <input type="text" name="popup" id="popup" className="hide"></input> <button name="popup" id="popup" className="hide">Edit</button>
             </span>
-            {/* <input type="text" name="popup" id="popup" className="hide"></input> */}
-
             </div>
             </>
           )
@@ -96,7 +94,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <div className="Header">
         My Todo App
+        </div>
         <div>
         {output()}
         </div>
