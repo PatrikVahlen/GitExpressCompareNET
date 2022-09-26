@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import TodoItem from '../../shared/src/todo-item';
 import "./App.css";
 import axios from "axios";
+import { GiTrashCan } from "react-icons/gi";
 
 axios.defaults.baseURL = process.env.REACT_APP_TODO_API || 'http://localhost:3001'
 
@@ -63,10 +64,10 @@ function App() {
     } else if (todos) {
       return (<div>{
         todos.map((item) => {
-          return (<>
+          return (
+            <>
             <div className="Todo">
-            <p key={item.id}>{item.text}</p>
-            <button className="Delete_Button" onClick={() => deleteTodo(item)}>Delete</button>
+            <span key={item.id}>{item.text} <button className="Delete_Button" onClick={() => deleteTodo(item)}> < GiTrashCan/> </button></span>
             </div>
             </>
           )
@@ -79,7 +80,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        My Todo App
+        <div>
         {output()}
+        </div>
       </header>
       <div className="Bottom_Field">
         <input className="Input_Field" type="text" value={todoText} onChange={(e) => setTodoText(e.target.value)}/>
