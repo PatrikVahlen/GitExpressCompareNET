@@ -16,7 +16,7 @@ function App() {
   const [todoText, setTodoText] = useState<string>('')
   const [todos, setTodos] = useState<TodoItem[]>([]);
   const [error, setError] = useState<string | undefined>();
-
+  
   const createTodo = async (todoText: string): Promise<void> => {
     const todoItem: TodoItem = {
       text: todoText,
@@ -47,14 +47,8 @@ function App() {
     }
   }
 
-  function editTodo (todo: TodoItem): void {
-    if (document.getElementById("popup")?.style.display === "none") {
-      document.getElementById("popup")!.style.display = "block";
-    } else {
-      document.getElementById("popup")!.style.display = "none";
-    } 
-  }
-   
+  
+  
   useEffect(() => {
     const interval = setInterval(() => {
       fetchTodos()
@@ -79,7 +73,7 @@ function App() {
             <div className="Todo">
             <span key={item.id}>{item.text} 
             <button className="Delete_Button" onClick={() => deleteTodo(item)}> < BsTrash/> </button> 
-            <button className="Edit_Button" onClick={() => editTodo(item)}> < AiOutlineEdit/> </button>
+            <button className="Edit_Button"> < AiOutlineEdit/> </button>
             <input type="text" name="popup" id="popup" className="hide"></input> <button name="popup" id="popup" className="hide">Edit</button>
             </span>
             </div>
