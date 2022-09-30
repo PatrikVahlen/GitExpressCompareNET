@@ -36,9 +36,9 @@ function App() {
 
   const deleteTodo = async (todo: TodoItem): Promise<void> => {
     console.log('delete todo', todo)
-    console.log('delete todo', todo.id)
+    console.log('delete todo', todo._id)
     try {
-      await axios.delete<TodoItem[]>(`/todos/${todo.id}`)
+      await axios.delete<TodoItem[]>(`/todos/${todo._id}`)
       const response = await axios.get<TodoItem[]>('/todos')
       setTodos(response.data)
     } catch (err) {
@@ -71,7 +71,7 @@ function App() {
           return (
             <>
             <div className="Todo">
-            <span key={item.id}>{item.text} 
+            <span key={item._id}>{item.text} 
             <button className="Delete_Button" onClick={() => deleteTodo(item)}> < BsTrash/> </button> 
             <button className="Edit_Button"> < AiOutlineEdit/> </button>
             <input type="text" name="popup" id="popup" className="hide"></input> <button name="popup" id="popup" className="hide">Edit</button>
