@@ -3,7 +3,7 @@ import TodoItem from '../../shared/src/todo-item';
 import "./App.css";
 import axios from "axios";
 import { BsTrash } from "react-icons/bs";
-import { AiOutlineEdit } from "react-icons/ai";
+// import { AiOutlineEdit } from "react-icons/ai";
 
 axios.defaults.baseURL = process.env.REACT_APP_TODO_API || 'http://localhost:3001'
 
