@@ -25,6 +25,7 @@ export const deleteTodoItem = async (id: string): Promise<void> => {
     await TodoModel.deleteOne({_id: id})
 }
 
-
-
+export const updateTodoItem = async (id: string, todoItem: TodoItem): Promise<void> => {
+    await TodoModel.updateOne({_id: id}, todoItem)
+}
     

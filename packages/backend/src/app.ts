@@ -4,7 +4,7 @@ import TodoItem from '@my-todo-app/shared'
 import crypto from 'crypto'
 import dotenv from 'dotenv'
 import {readFile, writeFile} from 'fs'
-import {deleteTodoItem, loadAllTodoItems, saveTodoItem, setupMongoDb} from './db'
+import {deleteTodoItem, updateTodoItem, loadAllTodoItems, saveTodoItem, setupMongoDb} from './db'
 
 dotenv.config()
 
@@ -48,15 +48,26 @@ app.post("/todos", async (req: Request<TodoItem>, res: Response<TodoItem[]>) => 
   res.send(todoItems)
 });
 
-// app.delete("/todos/:id", (req: Request<{id: string}>, res: Response<TodoItem[]>) => {
-//   const id = req.params.id
-//   console.log('Deleting todo item with id', id)
-//   deleteTodoItem(id)
+app.delete("/todos/:id", async (req: Request<{id: string}>, res: Response<TodoItem[]>) => {
+  const id = req.params.id
+  const deleted = await deleteTodoItem(id)
+  console.log('Deleted todo', deleted)
+  const todoItems = await loadAllTodoItems()
+  console.log('All todos', todoItems)
+  res.send(todoItems)
+});
 
-// //   TODO_ITEMS = TODO_ITEMS.filter(item => item._id !== id)
-// //   writeTodosToFile(TODO_ITEMS)
-// //   res.send(TODO_ITEMS)
-// });
+app.put("/todos/:id", async (req: Request<{id: string}>, res: Response<TodoItem[]>) => {
+  const id = req.params.id
+  const todoItem = req.body
+  const updated = await updateTodoItem(id, todoItem)
+  console.log('Updated todo', updated)
+  const todoItems = await loadAllTodoItems()
+  console.log('All todos', todoItems)
+  res.send(todoItems)
+});
+
+
 
 // app.put("/todos/:id", (req: Request<{id: string}>, res: Response<TodoItem[]>) => {
 //   const id = req.params.id
