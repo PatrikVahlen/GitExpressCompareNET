@@ -73,8 +73,8 @@ function App() {
             <div className="Todo">
             <span key={item._id}>{item.text} 
             <button className="Delete_Button" onClick={() => deleteTodo(item)}> < BsTrash/> </button> 
-            <button className="Edit_Button"> < AiOutlineEdit/> </button>
-            <input type="text" name="popup" id="popup" className="hide"></input> <button name="popup" id="popup" className="hide">Edit</button>
+            {/* <button className="Edit_Button"> < AiOutlineEdit/> </button>
+            <input type="text" name="popup" id="popup" className="hide"></input> <button name="popup" id="popup" className="hide">Edit</button> */}
             </span>
             </div>
             </>
@@ -88,6 +88,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        Hello World!
         <div className="Header">
         My Todo App
         </div>
@@ -96,9 +97,9 @@ function App() {
         </div>
       </header>
       <div className="Bottom_Field">
-        <input className="Input_Field" type="text" value={todoText} onChange={(e) => setTodoText(e.target.value)}/>
+        <input className="Input_Field" placeholder={`Your new todo item...`} minLength={1} maxLength={20} type="text" value={todoText} onChange={(e) => setTodoText(e.target.value)}/>
         <br />
-        <button className="Create_Button" onClick={(e) => createTodo(todoText)}>Create todo</button>
+        <button disabled={!todoText} className="Create_Button" onClick={(e) => createTodo(todoText)}>Create todo</button>
       </div>
     </div>
   );
