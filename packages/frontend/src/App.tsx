@@ -88,11 +88,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        Hello World!
         <div className="Header">
         My Todo App
+        <br />
+        <br />
+        My todos...
         </div>
-        <div>
+        <div className="Output-box">
         {output()}
         </div>
       </header>
