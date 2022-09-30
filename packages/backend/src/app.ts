@@ -67,8 +67,6 @@ app.put("/todos/:id", async (req: Request<{id: string}>, res: Response<TodoItem[
   res.send(todoItems)
 });
 
-
-
 // app.put("/todos/:id", (req: Request<{id: string}>, res: Response<TodoItem[]>) => {
 //   const id = req.params.id
 //   const todoItem = req.body
