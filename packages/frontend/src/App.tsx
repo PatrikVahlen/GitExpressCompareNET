@@ -89,8 +89,6 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="Header">
-        My Todo App
-        <br />
         <br />
         My todos...
         </div>
