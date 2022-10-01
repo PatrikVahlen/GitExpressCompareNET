@@ -1,11 +1,5 @@
 import TodoItem from "@my-todo-app/shared";
-// import { Request, Response } from "express";
-import {
-  loadAllTodoItems,
-  saveTodoItem,
-  deleteTodoItem,
-  updateTodoItem,
-} from "../models/todos-repository";
+import { loadAllTodoItems, saveTodoItem, deleteTodoItem, updateTodoItem} from "../models/todos-repository";
 import express, { Request, Response } from "express";
 import { loadTodos, saveTodo } from "../services/todos-services";
 

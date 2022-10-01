@@ -5,11 +5,8 @@ export const saveTodo = async (todoItem : TodoItem): Promise<TodoItem[]> => {
     if (!todoItem.text || todoItem.text === "") {
         throw new Error('Invalid text on todo item!')       
       } 
-      
       todoItem.timeStamp = new Date();
-
       await saveTodoItem(todoItem);
-
       return await loadAllTodoItems();
     }
 
