@@ -35,8 +35,6 @@ function App() {
   }
 
   const deleteTodo = async (todo: TodoItem): Promise<void> => {
-    // console.log('delete todo', todo)
-    // console.log('delete todo', todo._id)
     try {
       await axios.delete<TodoItem[]>(`/todos/${todo._id}`)
       const response = await axios.get<TodoItem[]>('/todos')
