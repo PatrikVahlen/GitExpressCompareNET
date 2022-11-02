@@ -1,4 +1,4 @@
-import TodoItem from "@my-todo-app/shared";
+import TodoItem from "../interface/todo-items";
 import { connect, model, Schema } from "mongoose";
 
 const TodoSchema = new Schema({
@@ -19,15 +19,4 @@ export const loadAllTodoItems = async (): Promise<TodoItem[]> => {
 export const saveTodoItem = async (todoItem: TodoItem): Promise<void> => {
   const newModel = new TodoModel(todoItem);
   newModel.save();
-};
-
-export const deleteTodoItem = async (id: string): Promise<void> => {
-  await TodoModel.deleteOne({ _id: id });
-};
-
-export const updateTodoItem = async (
-  id: string,
-  todoItem: TodoItem
-): Promise<void> => {
-  await TodoModel.updateOne({ _id: id }, todoItem);
 };
